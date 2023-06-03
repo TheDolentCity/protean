@@ -48,7 +48,7 @@ export default async function Post({
     <div className="flex flex-col w-screen h-[100svh] text-default bg-black">
       <header className="flex px-4 py-4 justify-between border-b border-base-900 bg-base-950">
         <h1 className="text-2xl tracking-tight font-semibold text-focus">
-          Protean{" "}
+          Protean&apos;
           <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-indigo-500">
             Poly
           </span>
