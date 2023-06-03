@@ -22,7 +22,7 @@ export default async function Home() {
       <div className="max-w-lg p-12 rounded-lg border border-base-900 bg-base-950">
         <div className="flex gap-6 mb-4 items-end">
           <h1 className="text-6xl text-focus tracking-tighter font-semibold">
-            Protean&apos;
+            <span>Protean </span>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-indigo-600">
               Poly
             </span>
