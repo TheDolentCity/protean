@@ -29,9 +29,9 @@ export default async function Home() {
           </h1>
         </div>
         <p className="text-lg text-default">
-          Roll dice with friends in realtime. If you're unsure how to use this
+          {`Roll dice with friends in realtime. If you're unsure how to use this
           app, contact the owner. If you don't know the owner is, you shouldn't
-          be here.
+          be here.`}
         </p>
       </div>
     </main>
