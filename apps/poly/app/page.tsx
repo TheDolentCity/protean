@@ -23,9 +23,7 @@ export default async function Home() {
         <div className="flex gap-6 mb-4 items-end">
           <h1 className="text-6xl text-focus tracking-tighter font-semibold">
             <span>Protean </span>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-indigo-600">
-              Poly
-            </span>
+            <span className="app-title">Poly</span>
           </h1>
         </div>
         <p className="text-lg text-default">

@@ -2,7 +2,6 @@ import {
   createServerActionClient,
   createServerComponentClient,
 } from "@supabase/auth-helpers-nextjs";
-import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import type { Database } from "@/types/database.types";
@@ -38,7 +37,6 @@ export default async function SignIn({
         email,
         password,
       });
-      console.log(response);
     } catch (error) {
       console.log(error);
       const errorMessage =
@@ -56,8 +54,6 @@ export default async function SignIn({
   const {
     data: { session },
   } = await supabase.auth.getSession();
-  console.log("/signin");
-  console.log(session);
 
   return (
     <div className="flex w-full h-full p-6 items-center justify-center bg-base-950">

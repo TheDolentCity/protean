@@ -1,5 +1,5 @@
-import Persona from "../../components/account/Persona";
-import { User } from "./page";
+import Persona from "./Persona";
+import type { User } from "@/types/app.types";
 
 export default function Message({
   loading,
@@ -20,7 +20,7 @@ export default function Message({
   if (loading) {
     return (
       <div className="flex w-full gap-3 mt-6 first:mt-0 px-4 items-start overflow-hidden rounded-md text-default">
-        <Persona />
+        <Persona loading />
         <div className="flex-auto flex flex-col min-w-0">
           <h3 className="flex h-6 gap-1 items-baseline truncate">
             <span className="w-16 h-[1rem] rounded-md animate-pulse bg-base-800" />
@@ -33,7 +33,7 @@ export default function Message({
   } else if (starting) {
     return (
       <div className="flex w-full gap-3 mt-6 first:mt-0 px-4 items-start overflow-hidden text-default">
-        <Persona />
+        <Persona letters={author?.username?.slice(0, 1)} color={color} />
         <div className="flex-auto flex flex-col min-w-0">
           <h3 className="align-baseline truncate">
             <span className="mr-1 text-focus">{authorText}</span>

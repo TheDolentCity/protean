@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { MessageWithAuthor } from "./page";
-import type { Database } from "@/types/database.types";
 import Message from "./Message";
+import type { Database } from "@/types/database.types";
+import type { MessageWithAuthor } from "@/types/app.types";
 
 export default function Messages({
   serverMessages,
 }: {
-  serverMessages: Array<MessageWithAuthor | null>;
+  serverMessages: Array<MessageWithAuthor>;
 }) {
   const supabase = createClientComponentClient<Database>();
   const [messages, setMessages] = useState(serverMessages);
@@ -32,10 +32,13 @@ export default function Messages({
         },
         (payload) => {
           console.log(`Realtime:${JSON.stringify(payload)}`);
-          setMessages((messages) => [
-            ...messages,
-            payload.new as MessageWithAuthor,
-          ]);
+          const newMessage = payload?.new as MessageWithAuthor;
+          if (
+            newMessage &&
+            messages?.at(0)?.channel_id === newMessage?.channel_id
+          ) {
+            setMessages((messages) => [...messages, newMessage]);
+          }
         }
       )
       .subscribe();
@@ -46,7 +49,7 @@ export default function Messages({
   }, [supabase, messages, setMessages]);
 
   return (
-    <div className="flex flex-col w-full h-full gap-2">
+    <div className="flex flex-col w-full h-full">
       {messages?.map((message, i) => (
         <Message
           key={message?.id}
