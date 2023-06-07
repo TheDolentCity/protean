@@ -21,7 +21,7 @@ export async function GET(
     data: { session },
   } = await supabase.auth.getSession();
   if (!session) {
-    redirect("/signin");
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   const { data: messages } = await supabase
@@ -54,7 +54,7 @@ export async function POST(
     data: { session },
   } = await supabase.auth.getSession();
   if (!session) {
-    redirect("/signin");
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   const { message, user_id } = await request.json();

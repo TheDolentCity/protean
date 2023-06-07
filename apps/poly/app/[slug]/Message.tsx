@@ -1,3 +1,4 @@
+import { timeAgo } from "@/utilities/time-ago";
 import Persona from "./Persona";
 import type { User } from "@/types/app.types";
 
@@ -11,15 +12,16 @@ export default function Message({
   loading?: boolean;
   starting?: boolean;
   author?: User;
-  message: string | null | undefined;
+  message?: string | null | undefined;
   timestamp?: string | null | undefined;
 }) {
   const authorText = author?.nickname ?? author?.username ?? "Unknown user";
   const color = author?.color ?? "27272a";
+  const time = timestamp ? timeAgo(timestamp) : "Unknown timestamp";
 
   if (loading) {
     return (
-      <div className="flex w-full gap-3 mt-6 first:mt-0 px-4 items-start overflow-hidden rounded-md text-default">
+      <div className="flex w-full gap-3 mt-6 first:mt-0 items-start overflow-hidden rounded-md text-default">
         <Persona loading />
         <div className="flex-auto flex flex-col min-w-0">
           <h3 className="flex h-6 gap-1 items-baseline truncate">
@@ -32,21 +34,27 @@ export default function Message({
     );
   } else if (starting) {
     return (
-      <div className="flex w-full gap-3 mt-6 first:mt-0 px-4 items-start overflow-hidden text-default">
-        <Persona letters={author?.username?.slice(0, 1)} color={color} />
-        <div className="flex-auto flex flex-col min-w-0">
-          <h3 className="align-baseline truncate">
-            <span className="mr-1 text-focus">{authorText}</span>
-            {/* <Time relative {timestamp} className="text-xs text-base-500" /> */}
-          </h3>
-          <p className="text-base-400">{message}</p>
-        </div>
+      <div className="flex flex-col w-full gap-1 mt-6 first:mt-0 overflow-hidden text-default">
+        <h3 className="flex items-baseline justify-between truncate">
+          <span className="flex gap-2 items-center">
+            <span
+              className="w-2.5 h-2.5 rounded-full"
+              style={{ backgroundColor: color }}
+            />
+            <span className="text-sm text-focus">{authorText}</span>
+          </span>
+          <span className="text-sm text-base-400">{time}</span>
+        </h3>
+        <p className="text-base-400">{message}</p>
       </div>
     );
   } else
     return (
-      <div className="flex w-full pl-[3.25rem] md:pl-[3.75rem] pr-4 gap-3 items-start overflow-hidden text-default">
+      <div className="group flex w-full gap-3 items-baseline justify-between truncate text-default">
         <p className="flex-auto text-base-400">{message}</p>
+        <span className="opacity-0 group-hover:opacity-100 text-sm text-base-400 mst">
+          {time}
+        </span>
       </div>
     );
 }

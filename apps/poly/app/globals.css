@@ -17,13 +17,16 @@
     @apply text-base-600;
   }
   .text-default {
-    @apply text-base-500;
+    @apply text-base-400;
   }
   .text-focus {
-    @apply text-base-300;
+    @apply text-base-100;
   }
   .app-title {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-emerald-700;
+    @apply text-primary-500;
+  }
+  .glass {
+    @apply bg-base-800/[50%] backdrop-blur-md hover:bg-white/10 focus:bg-white/10 mst;
   }
 }
 

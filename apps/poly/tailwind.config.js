@@ -11,7 +11,7 @@ module.exports = {
     extend: {
       colors: {
         base: colors.zinc,
-        primary: colors.blue,
+        primary: colors.emerald,
       },
       fontFamily: {
         sans: [

@@ -20,7 +20,7 @@ export async function GET(
     data: { session },
   } = await supabase.auth.getSession();
   if (!session) {
-    redirect("/signin");
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const { data: user } = await supabase

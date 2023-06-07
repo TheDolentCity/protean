@@ -49,7 +49,7 @@ export default function Messages({
   }, [supabase, messages, setMessages]);
 
   return (
-    <div className="flex flex-col w-full h-full">
+    <>
       {messages?.map((message, i) => (
         <Message
           key={message?.id}
@@ -61,6 +61,6 @@ export default function Messages({
           }
         />
       ))}
-    </div>
+    </>
   );
 }
